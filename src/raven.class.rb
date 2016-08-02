@@ -24,6 +24,16 @@ def get_handler()
  return @raven_remote_handler
 end
 
+def raven_attack()
+
+
+end
+
+def raven_check()
+
+
+end
+
 def raven_help(arg)
  case arg
  when "set"
@@ -89,10 +99,8 @@ def raven_command(cmd)
       else
       puts "Invaild vaule"
       end
-     
       
     when "set"
-      
       #argument.size is argument count
       case argument.size
       when 1 # ------------------------> no value
@@ -118,6 +126,12 @@ def raven_command(cmd)
 	  else
       puts "Invaild Argument"
       end
+    when "exploit","run","attack"
+     self.raven_attack()
+    when "check","test"
+     self.raven_check()
+    else
+    
     end
 end
 
