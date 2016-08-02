@@ -24,16 +24,34 @@ def get_handler()
  return @raven_remote_handler
 end
 
-def raven_help()
- puts " set                     : set target information"
- puts "                          -> set host 127.0.0.1"
- puts "                          -> set os linux"
- puts "                          -> set handler 127.0.0.1:4444"
- puts " check / test            : no risk check"
- puts " exploit / attack / run  : real attack"
- puts " clear / cls             : clear display"
- puts " exit / quit / bye       : exit the raven"
- puts ""
+def raven_help(arg)
+ case arg
+ when "set"
+  puts "Set target / raven information"
+  puts " + host,target => target host address."
+  puts " + os          => target host os. [default is auto(none)]"
+  puts " + payload     => payload for attack[default is meterpreter shell]"
+  puts " + handler     => set exploit handler[attackerip:port]"
+ when "check","test"
+  puts "Check vulnerability / no risk check"
+ when "exploit","attack","run"
+  puts "Real Attack. get shell"
+ when "clear","cls"
+  puts "Clear display"
+ when "exit","quit","bye"
+  puts "Exit the raven."
+ else
+  puts " set                     : set target information"
+  puts "                          -> set host 127.0.0.1"
+  puts "                          -> set os linux"
+  puts "                          -> set handler 127.0.0.1:4444"
+  puts " check / test            : no risk check"
+  puts " exploit / attack / run  : real attack"
+  puts " clear / cls             : clear display"
+  puts " exit / quit / bye       : exit the raven"
+  puts ""
+ end
+ 
 end
 
 def raven_command(cmd)
@@ -50,9 +68,31 @@ def raven_command(cmd)
     when "clear", "cls"
     topbanner()
     when "help", "man"
-      self.raven_help()
+      
+      case argument.size
+      when 1
+      argument[0] = argument[0].downcase
+        case argument[0]
+        when "set"
+         self.raven_help("set")
+        when "check","test"
+         self.raven_help("check")
+        when "exploit","attack","run"
+         self.raven_help("exploit")
+        when "clear","cls"
+         self.raven_help("clear")
+        when "exit","quit","bye"
+         self.raven_help("exit")
+        else
+         self.raven_help("all")
+        end
+      else
+      puts "Invaild vaule"
+      end
+     
+      
     when "set"
-      puts "set"
+      
       #argument.size is argument count
       case argument.size
       when 1 # ------------------------> no value
