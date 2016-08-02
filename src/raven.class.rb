@@ -53,7 +53,32 @@ def raven_command(cmd)
       self.raven_help()
     when "set"
       puts "set"
- end
+      #argument.size is argument count
+      case argument.size
+      when 1 # ------------------------> no value
+      puts "no value"
+      when 2
+      argument[0] = argument[0].downcase
+		  case argument[0]
+		  when "host","target"
+			@raven_target_addr = argument[1]
+			topbanner()
+		  when "os"
+			@raven_target_os = argument[1]
+			topbanner()
+		  when "payload"
+			@raven_payload = argument[1]
+			topbanner()
+		  when "handler"
+			@raven_remote_handler = argument[1]
+			topbanner()
+		  else
+		   puts "Invaild Value"
+		  end
+	  else
+      puts "Invaild Argument"
+      end
+    end
 end
 
 end
