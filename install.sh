@@ -6,4 +6,6 @@ echo ' -> set command'
 MYPWD=`pwd`
 echo '#/usr/bin/ruby
 ruby '$MYPWD'/raven.rb $*' >> /usr/bin/raven
+echo 'Set perm'
+chmod 755 /usr/bin/raven
 echo 'Finish. run a raven'
