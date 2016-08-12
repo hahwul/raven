@@ -75,6 +75,8 @@ def raven_command(cmd)
     when "exit", "quit", "bye"
     puts "\n Exit the RAVEN.."
     exit(0)
+    exit(0)
+    exit(0)
     when "clear", "cls"
     topbanner()
     when "help", "man"
